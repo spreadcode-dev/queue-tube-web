@@ -8,6 +8,10 @@ on:
 
 jobs:
   trigger:
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
     if: |
       (github.event_name == 'issues' && github.event.label.name == 'code-ready') ||
       (github.event_name == 'issue_comment' &&
