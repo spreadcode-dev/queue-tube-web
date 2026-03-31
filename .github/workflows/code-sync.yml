@@ -1,0 +1,24 @@
+name: Code Sync — Trigger
+
+on:
+  issues:
+    types: [labeled]
+  issue_comment:
+    types: [created]
+
+jobs:
+  trigger:
+    if: |
+      (github.event_name == 'issues' && github.event.label.name == 'code-ready') ||
+      (github.event_name == 'issue_comment' &&
+       contains(github.event.issue.labels.*.name, 'code-ready') &&
+       github.event.comment.body == '/code sync')
+    uses: spreadcode-dev/queue-tube-mcps/.github/workflows/code-sync.yml@main
+    with:
+      source_repo:  "spreadcode-dev/queue-tube-web"
+      issue_number: "${{ github.event.issue.number }}"
+      issue_title:  "${{ github.event.issue.title }}"
+      issue_body:   "${{ github.event.issue.body }}"
+    secrets:
+      ANTHROPIC_API_KEY:        ${{ secrets.ANTHROPIC_API_KEY }}
+      GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
