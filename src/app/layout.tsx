@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import { GluestackUIProvider } from "./gluestack-ui-provider";
 import "./globals.css";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "QueueTube",
-  description: "YouTube queue management for power users",
+  description: "Manage and play your YouTube queues",
 };
 
 export default function RootLayout({
@@ -12,8 +16,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning={true}>
-      <body>{children}</body>
+    <html lang="en" className="dark" suppressHydrationWarning={true}>
+      <body className={inter.className}>
+        <GluestackUIProvider mode="dark">{children}</GluestackUIProvider>
+      </body>
     </html>
   );
 }
