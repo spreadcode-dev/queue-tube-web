@@ -1,0 +1,50 @@
+{
+  "name": "queue-tube-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbo",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier --write .",
+    "type-check": "tsc --noEmit",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage"
+  },
+  "dependencies": {
+    "next": "15.x",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "@gluestack-ui/themed": "latest",
+    "@gluestack-style/react": "latest",
+    "nativewind": "^4.x",
+    "react-native": "^0.74.x",
+    "react-native-web": "latest"
+  },
+  "devDependencies": {
+    "typescript": "^5.x",
+    "@types/node": "^20.x",
+    "@types/react": "^19.x",
+    "@types/react-dom": "^19.x",
+    "vitest": "^2.x",
+    "@vitejs/plugin-react": "latest",
+    "@testing-library/react": "^16.x",
+    "@testing-library/user-event": "^14.x",
+    "@testing-library/jest-dom": "latest",
+    "@vitest/coverage-v8": "latest",
+    "eslint": "^8.x",
+    "eslint-config-next": "15.x",
+    "eslint-plugin-tailwindcss": "latest",
+    "prettier": "^3.x",
+    "prettier-plugin-tailwindcss": "latest",
+    "husky": "^9.x",
+    "lint-staged": "latest",
+    "@commitlint/cli": "latest",
+    "@commitlint/config-conventional": "latest",
+    "tailwindcss": "^3.x",
+    "postcss": "latest",
+    "autoprefixer": "latest"
+  }
+}
