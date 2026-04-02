@@ -1,6 +1,6 @@
 # QueueTube Web
 
-The web front-end for QueueTube — a YouTube queue management app built with Next.js 15, React 19, gluestack-ui v3, and NativeWind.
+QueueTube is a React / Next.js 15 web application.
 
 ---
 
@@ -15,55 +15,66 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## Testing
+## Code Quality
 
-QueueTube uses [Vitest](https://vitest.dev/) as the unit testing framework, paired with [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) for component-level tests.
+This project uses **ESLint** for correctness and **Prettier** for formatting. The two tools are
+non-overlapping: `eslint-config-prettier` disables every ESLint rule that could conflict with
+Prettier's formatting decisions.
 
-### Running Tests
+### Running the linter
 
-| Command | Description |
-|---|---|
-| `pnpm test` | Watch mode — re-runs affected tests on file change (local development) |
-| `pnpm test:run` | Single-pass run — exits with code 0 when all tests pass |
-| `pnpm test:coverage` | Full run with V8 coverage report — enforces 80% thresholds |
+```bash
+# Check for ESLint errors
+pnpm lint
 
-### Coverage Report
+# Auto-fix safe violations
+pnpm lint:fix
+```
 
-After running `pnpm test:coverage`, three outputs are generated in `./coverage/`:
+### Running the formatter
 
-- **`./coverage/index.html`** — open in a browser for a visual, file-by-file breakdown
-- **`./coverage/lcov.info`** — consumed by CI coverage integrations
-- **Terminal output** — printed inline at the end of every coverage run
+```bash
+# Format all files in-place
+pnpm format
 
-Coverage thresholds are enforced at **80%** on lines, branches, functions, and statements. `pnpm test:coverage` exits with code 1 if any threshold is not met.
+# Check that all files are already formatted (used in CI)
+pnpm format:check
+```
 
-> `coverage/` is listed in `.gitignore` — reports are generated artifacts, not source files.
+### Tailwind class ordering
 
-### What Vitest Covers
+`prettier-plugin-tailwindcss` automatically sorts Tailwind class names into Tailwind's recommended
+order on every `pnpm format` run. No manual sorting is needed.
 
-| Vitest (unit tests) | Playwright — future |
-|---|---|
-| Synchronous Client Components | Async React Server Components |
-| Custom hooks (`use*`) | Full page navigation flows |
-| Utility functions (`lib/`) | Auth flows |
-| Conditional rendering logic | Cross-browser rendering |
-| Error and empty states | Real YouTube API integration |
+### VS Code setup
 
-> Vitest does **not** support async React Server Components. RSC flows will be covered by a dedicated Playwright setup (tracked separately).
+A `.vscode/settings.json` is committed to the repository. Once you have the
+[Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) and
+[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) extensions
+installed, files will be formatted and linted automatically on save.
 
-### Test Conventions
-
-- Test files are **co-located** with the files they test: `QueueCard.tsx` → `QueueCard.test.tsx`
-- `describe` blocks match the component or function name
-- `it` / `test` labels describe behaviour, not implementation: `"renders the queue title"`, not `"calls setTitle"`
-- Globals (`describe`, `it`, `expect`, `vi`) are available without explicit imports
+For personal editor overrides, create `.vscode/settings.local.json` — this file is gitignored.
 
 ---
 
-## Tech Stack
+## Testing
 
-- **Framework**: Next.js 15 (App Router)
-- **UI**: gluestack-ui v3 + NativeWind (Tailwind utility classes)
-- **Styling tokens**: see `src/app/gluestack-ui-provider/config.ts`
-- **Testing**: Vitest + React Testing Library + jsdom
-- **Linting**: ESLint + Prettier (Conventional Commits enforced via commitlint)
+```bash
+# Watch mode
+pnpm test
+
+# Single run
+pnpm test:run
+
+# Coverage report (≥ 80% required)
+pnpm test:coverage
+```
+
+---
+
+## Commits
+
+All commits must follow [Conventional Commits](https://www.conventionalcommits.org/) — enforced by
+commitlint in the `commit-msg` Git hook.
+
+Examples: `feat: add queue card component`, `fix: correct border colour token`, `chore: update deps`

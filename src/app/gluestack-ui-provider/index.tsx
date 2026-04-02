@@ -7,10 +7,7 @@ interface GluestackUIProviderProps {
   children: React.ReactNode;
 }
 
-export function GluestackUIProvider({
-  mode = "dark",
-  children,
-}: GluestackUIProviderProps) {
+export function GluestackUIProvider({ mode = "dark", children }: GluestackUIProviderProps) {
   useEffect(() => {
     document.documentElement.classList.toggle("dark", mode === "dark");
   }, [mode]);
