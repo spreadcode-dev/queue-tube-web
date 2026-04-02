@@ -1,6 +1,5 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { describe, it, expect, afterEach } from "vitest";
 import { GluestackUIProvider } from "./index";
 
 afterEach(() => {

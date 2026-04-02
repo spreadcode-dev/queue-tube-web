@@ -1,4 +1,3 @@
-import { describe, it, expect } from "vitest";
 import { config } from "./config";
 
 describe("QueueTube design token config", () => {
