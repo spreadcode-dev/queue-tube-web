@@ -2,10 +2,7 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
   darkMode: "class",
-  content: [
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/ui/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}", "./src/components/ui/**/*.{js,ts,jsx,tsx}"],
   presets: [require("nativewind/preset")],
   theme: {
     extend: {
@@ -16,20 +13,20 @@ const config: Config = {
           600: "var(--color-primary-600)",
         },
         background: {
-          dark:    "var(--color-background-dark)",
-          0:       "var(--color-background-0)",
-          50:      "var(--color-background-50)",
-          800:     "var(--color-background-800)",
-          error:   "var(--color-background-error)",
+          dark: "var(--color-background-dark)",
+          0: "var(--color-background-0)",
+          50: "var(--color-background-50)",
+          800: "var(--color-background-800)",
+          error: "var(--color-background-error)",
           success: "var(--color-background-success)",
-          info:    "var(--color-background-info)",
+          info: "var(--color-background-info)",
         },
         secondary: {
-          0:   "var(--color-secondary-0)",
+          0: "var(--color-secondary-0)",
           400: "var(--color-secondary-400)",
         },
         typography: {
-          0:   "var(--color-typography-0)",
+          0: "var(--color-typography-0)",
           400: "var(--color-typography-400)",
           600: "var(--color-typography-600)",
           900: "var(--color-typography-900)",
